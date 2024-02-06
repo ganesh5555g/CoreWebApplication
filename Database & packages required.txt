@@ -1,0 +1,40 @@
+Database Name - CompanyDB
+
+Tables:
+USE [CompanyDB]
+GO
+
+/****** Object:  Table [dbo].[Employees]    Script Date: 06-02-2024 03:11:41 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Employees](
+	[EmployeeId] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](50) NOT NULL,
+	[Address] [varchar](250) NULL,
+	[Designation] [varchar](50) NULL,
+	[Salary] [decimal](18, 0) NOT NULL,
+	[JoiningDate] [datetime] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[EmployeeId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Employees] ADD  DEFAULT (getdate()) FOR [JoiningDate]
+GO
+
+
+Packages required in visual studio 2019
+Microsoft.EntityFrameworkCore.SqlServer
+Microsoft.EntityFrameworkCore.Tools
+
+
+Create Model And Context Class From An Existing Database.(Scaffold-DbContext command)
+Scaffold-DbContext “Server=******;Database=ComapnyDB;Integrated Security=True” Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
+
+
